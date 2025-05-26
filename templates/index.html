@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Log</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-6 bg-gray-100">
+    <h1 class="text-2xl font-bold mb-4">Trading Log</h1>
+    <table class="min-w-full bg-white rounded shadow">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">Date</th>
+                <th class="px-4 py-2">Stock</th>
+                <th class="px-4 py-2">Qty</th>
+                <th class="px-4 py-2">Buy</th>
+                <th class="px-4 py-2">Sell</th>
+                <th class="px-4 py-2">Entry</th>
+                <th class="px-4 py-2">Exit</th>
+                <th class="px-4 py-2">PnL</th>
+                <th class="px-4 py-2">Cumulative PnL</th>
+                <th class="px-4 py-2">Screenshot</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trade in trades %}
+            <tr class="text-center">
+                <td class="border px-4 py-2">{{ trade.date }}</td>
+                <td class="border px-4 py-2">{{ trade.stock }}</td>
+                <td class="border px-4 py-2">{{ trade.quantity }}</td>
+                <td class="border px-4 py-2">{{ trade.buy_price }}</td>
+                <td class="border px-4 py-2">{{ trade.sell_price }}</td>
+                <td class="border px-4 py-2">{{ trade.entry_value }}</td>
+                <td class="border px-4 py-2">{{ trade.exit_value }}</td>
+                <td class="border px-4 py-2">{{ trade.pnl }}</td>
+                <td class="border px-4 py-2">{{ trade.cumulative_pnl }}</td>
+                <td class="border px-4 py-2">
+                    {% if trade.screenshot %}
+                        <img src="{{ url_for('uploaded_file', filename=trade.screenshot) }}" class="h-16 mx-auto">
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <BR>
+    <table class="min-w-full bg-white rounded shadow">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="px-4 py-2">CAPITAL</th>
+                <th class="px-4 py-2">TRADING MONTH</th>
+                <th class="px-4 py-2">START DATE</th>
+                <th class="px-4 py-2">END DATE</th>
+                <th class="px-4 py-2">TRADED DAYS</th>
+                <th class="px-4 py-2">PAYMENT DATE</th>
+                <th class="px-4 py-2">MONTHLY RETURNS</th>
+                <th class="px-4 py-2">Screenshot</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td class="border px-4 py-2">200000</td>
+                <td class="border px-4 py-2">MAY - JUNE</td>
+                <td class="border px-4 py-2">26/05/2025</td>
+                <td class="border px-4 py-2">20/06/2025</td>
+                <td class="border px-4 py-2">1/20</td>
+                <td class="border px-4 py-2">25/06/2025</td>
+                <td class="border px-4 py-2"></td>
+                <td class="border px-4 py-2">
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
